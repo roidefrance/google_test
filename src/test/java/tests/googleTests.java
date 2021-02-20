@@ -1,23 +1,22 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byClassName;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.*;
 
-class googleTests {
-
+public class googleTests {
 
     @Test
-    void siteExists() {
-
+    void SearchTest () {
+        // Открыть google
         open("https://www.google.com/");
-        $("html").shouldHave(text("Почта"));
-    }
 
+        // Ввести Selenide в поиск
+        $(byName("q")).setValue("Selenide").pressEnter();
+
+        // Проверить, что Selenide появился в результатах поиска
+        $("#search").shouldHave(text("selenide.org"));
+    }
 }
